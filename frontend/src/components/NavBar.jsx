@@ -2,7 +2,7 @@ import { Link } from "react-router-dom"
 import { useUserStore } from "../store/useUserStore"
 
 const NavBar = () =>{
-    const {token} = useUserStore
+    const {session} = useUserStore()
 
     return(
         <div className="navbar">
@@ -12,9 +12,9 @@ const NavBar = () =>{
                     <li>
                         <Link to={"/"}>Домой</Link>
                     </li>
-                    {!token ? (
+                    {!session ? (
                         <li>
-                            <Link to={"/sigin"}>Войти</Link>
+                            <Link to={"/signin"}>Войти</Link>
                         </li>
                     ) : (<li>                          
                             <Link to={"/logout"}>Выйти</Link>
