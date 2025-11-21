@@ -1,12 +1,15 @@
 import { useEffect, useState } from "react"
 import { api } from "../api/api"
 import MessageCard from "./MessageCard"
-import { useMessageSore } from "../store/useMessageStore"
+import { useMessageStore } from "../store/useMessageStore"
 
 const Feed = ({title = "Сообщения"}) => {
-    const {messages, getMessages} = useMessageSore()
+    const {messages, getMessages} = useMessageStore()
+    const [timerId, setTimerId] = useState(undefined)
     useEffect(() => {
             getMessages()
+            setTimerId(setInterval(()=> {getMessages()}, 5000))
+            return () => {clearInterval(timerId)}
     }, [])
 
     return (
