@@ -13,12 +13,19 @@ const NavBar = () =>{
                         <Link to={"/"}>Домой</Link>
                     </li>
                     {!session ? (
+                        
                         <li>
                             <Link to={"/signin"}>Войти</Link>
                         </li>
-                    ) : (<li>                          
+                    ) : (
+                        <>
+                        <li>
+                            <Link to={"/my-messages"}>Мои сообщения</Link>
+                        </li>
+                        <li>                          
                             <Link to={"/logout"}>Выйти</Link>
                         </li>
+                        </>
                     )}
                 </ul>
             </div>

@@ -2,6 +2,7 @@ import TextArea from "./TextArea"
 import Button from "./Button"
 import { api } from "../api/api"
 import { useMessageStore } from "../store/useMessageStore"
+import { useStore } from "zustand"
 
 const MessageField = () =>{
     const { getMessages } = useMessageStore()
@@ -10,8 +11,9 @@ const MessageField = () =>{
         const message = {content: e.target.content.value}
 
         try {
-            api.sendMessage(message)
-            getMessages()
+            await api.sendMessage(message)
+            await getMessages()
+            e.target.reset()
         } catch (error) {
             console.error(error)
         }

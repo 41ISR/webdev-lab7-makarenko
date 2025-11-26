@@ -4,7 +4,7 @@ import { useMessageStore } from "../store/useMessageStore"
 
 
 
-const MessageCard = ({id, content, username, createdAt, userId, likedBy}) => {
+const MessageCard = ({reports, likes, id, content, username, createdAt, userId, likedBy}) => {
     const {session} = useUserStore()
     const {getMessages} = useMessageStore()
     const handleDelete = async () =>{
@@ -33,11 +33,11 @@ const MessageCard = ({id, content, username, createdAt, userId, likedBy}) => {
             </div>
             <div className="message-actions">
                 <button onClick={handleLike} className="action-button">
-                    <span>{isLiked ? "💖" : "🤍"}</span>
+                    <span>{likes}{isLiked ? "💖" : "🤍"}</span>
                     <span>Нравится</span>
                 </button>
                 <button onClick={handleReport} className="action-button">
-                    <span>🚩</span>
+                    <span>{reports}🚩</span>
                     <span>Пожаловаться</span>
                 </button>
                 {isOwn && <button onClick={handleDelete} className="action-button delete">
